@@ -1,0 +1,134 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {};
+	objectVersion = 56;
+	objects = {
+		100000000000000000000001 = {isa = PBXBuildFile; fileRef = 100000000000000000000003; };
+		100000000000000000000002 = {isa = PBXBuildFile; fileRef = 100000000000000000000004; };
+		100000000000000000000003 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Picker.swift; sourceTree = "<group>"; };
+		100000000000000000000004 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioOutputs.swift; sourceTree = "<group>"; };
+		100000000000000000000005 = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		100000000000000000000006 = {isa = PBXFileReference; explicitFileType = wrapper.application; path = Snd.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		100000000000000000000007 = {
+			isa = PBXGroup;
+			children = (100000000000000000000008, 100000000000000000000009);
+			sourceTree = "<group>";
+		};
+		100000000000000000000008 = {
+			isa = PBXGroup;
+			children = (100000000000000000000003, 100000000000000000000004, 100000000000000000000019, 100000000000000000000005, 100000000000000000000015);
+			path = Snd;
+			sourceTree = "<group>";
+		};
+		100000000000000000000009 = {
+			isa = PBXGroup;
+			children = (100000000000000000000006);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		10000000000000000000000A = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 10000000000000000000000F;
+			buildPhases = (10000000000000000000000B, 100000000000000000000018);
+			buildRules = ();
+			dependencies = ();
+			name = Snd;
+			productName = Snd;
+			productReference = 100000000000000000000006;
+			productType = "com.apple.product-type.application";
+		};
+		10000000000000000000000B = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (100000000000000000000001, 100000000000000000000002, 10000000000000000000001A);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		10000000000000000000000C = {
+			isa = PBXProject;
+			buildConfigurationList = 10000000000000000000000E;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = et;
+			hasScannedForEncodings = 0;
+			knownRegions = (et, Base);
+			mainGroup = 100000000000000000000007;
+			productRefGroup = 100000000000000000000009;
+			projectDirPath = "";
+			targets = (10000000000000000000000A);
+		};
+		10000000000000000000000E = {
+			isa = XCConfigurationList;
+			buildConfigurations = (100000000000000000000010, 100000000000000000000011);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		10000000000000000000000F = {
+			isa = XCConfigurationList;
+			buildConfigurations = (100000000000000000000012, 100000000000000000000013);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		100000000000000000000010 = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				ONLY_ACTIVE_ARCH = YES;
+			};
+			name = Debug;
+		};
+		100000000000000000000011 = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		100000000000000000000012 = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Manual;
+				INFOPLIST_FILE = Snd/Info.plist;
+				PRODUCT_BUNDLE_IDENTIFIER = ee.music.sndpicker;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		100000000000000000000013 = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Manual;
+				INFOPLIST_FILE = Snd/Info.plist;
+				PRODUCT_BUNDLE_IDENTIFIER = ee.music.sndpicker;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		100000000000000000000014 = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Snd.icns; sourceTree = "<group>"; };
+		100000000000000000000015 = {
+			isa = PBXGroup;
+			children = (100000000000000000000014, 100000000000000000000016);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		100000000000000000000016 = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Snd-icon.png"; sourceTree = "<group>"; };
+		100000000000000000000017 = {isa = PBXBuildFile; fileRef = 100000000000000000000014; };
+		100000000000000000000018 = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (100000000000000000000017);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		100000000000000000000019 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlfredCommand.swift; sourceTree = "<group>"; };
+		10000000000000000000001A = {isa = PBXBuildFile; fileRef = 100000000000000000000019; };
+	};
+	rootObject = 10000000000000000000000C;
+}

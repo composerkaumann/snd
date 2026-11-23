@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string>ee.music.sndpicker.workflow</string>
+	<key>name</key>
+	<string>Snd · Heliväljund</string>
+	<key>description</key>
+	<string>Otsi heliväljundit nime alguse järgi või ava valikuaken.</string>
+	<key>version</key>
+	<string>1.3</string>
+	<key>readme</key>
+	<string>Sisesta snd ja väljundi nime algus, näiteks snd lg või snd dor. Vali tulemus ja vajuta Return. Ainult snd avab valikuakna.</string>
+	<key>disabled</key>
+	<false/>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>6FD7860E-32D8-4A18-B246-76F60CBED0C0</string>
+			<key>version</key>
+			<integer>1</integer>
+			<key>config</key>
+			<dict>
+				<key>alfredfiltersresults</key>
+				<false/>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>escaping</key>
+				<integer>127</integer>
+				<key>keyword</key>
+				<string>snd</string>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
+				<key>runningsubtext</key>
+				<string>Loen saadaolevaid heliväljundeid…</string>
+				<key>script</key>
+				<string>exec "$PWD/Snd.app/Contents/MacOS/Snd" --alfred-list "$1"</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>subtext</key>
+				<string>Sisesta väljundi nime algus</string>
+				<key>title</key>
+				<string>Otsi heliväljundit</string>
+				<key>type</key>
+				<integer>0</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+		</dict>
+		<dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>8827FEB1-6D69-497E-8DC6-B2F9055B4D2F</string>
+			<key>version</key>
+			<integer>1</integer>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>127</integer>
+				<key>script</key>
+				<string>case "$1" in
+    open)
+        app="/Applications/Snd.app"
+        [[ -d "$app" ]] || app="$PWD/Snd.app"
+        set -- /usr/bin/open "$app"
+        ;;
+    select)
+        set -- "$PWD/Snd.app/Contents/MacOS/Snd" --alfred-select "$2"
+        ;;
+    *)
+        exit 0
+        ;;
+esac
+
+if ! message=$("$@" 2&gt;&amp;1); then
+    printf '%s\n' "$message"
+fi</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+		</dict>
+		<dict>
+			<key>type</key>
+			<string>alfred.workflow.output.notification</string>
+			<key>uid</key>
+			<string>F3A8B55C-37B0-49AD-8525-C28BBBA5E9D8</string>
+			<key>version</key>
+			<integer>0</integer>
+			<key>config</key>
+			<dict>
+				<key>lastpathcomponent</key>
+				<false/>
+				<key>onlyshowifquerypopulated</key>
+				<true/>
+				<key>removeextension</key>
+				<false/>
+				<key>text</key>
+				<string>{query}</string>
+				<key>title</key>
+				<string>Snd</string>
+			</dict>
+		</dict>
+	</array>
+	<key>connections</key>
+	<dict>
+		<key>6FD7860E-32D8-4A18-B246-76F60CBED0C0</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>8827FEB1-6D69-497E-8DC6-B2F9055B4D2F</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>8827FEB1-6D69-497E-8DC6-B2F9055B4D2F</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>F3A8B55C-37B0-49AD-8525-C28BBBA5E9D8</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+	</dict>
+	<key>uidata</key>
+	<dict>
+		<key>6FD7860E-32D8-4A18-B246-76F60CBED0C0</key>
+		<dict>
+			<key>xpos</key>
+			<integer>50</integer>
+			<key>ypos</key>
+			<integer>50</integer>
+		</dict>
+		<key>8827FEB1-6D69-497E-8DC6-B2F9055B4D2F</key>
+		<dict>
+			<key>xpos</key>
+			<integer>270</integer>
+			<key>ypos</key>
+			<integer>50</integer>
+		</dict>
+		<key>F3A8B55C-37B0-49AD-8525-C28BBBA5E9D8</key>
+		<dict>
+			<key>xpos</key>
+			<integer>490</integer>
+			<key>ypos</key>
+			<integer>50</integer>
+		</dict>
+	</dict>
+</dict>
+</plist>
