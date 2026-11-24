@@ -17,7 +17,7 @@
 		};
 		100000000000000000000008 = {
 			isa = PBXGroup;
-			children = (100000000000000000000003, 100000000000000000000004, 100000000000000000000019, 100000000000000000000005, 100000000000000000000015);
+			children = (100000000000000000000003, 100000000000000000000004, 100000000000000000000019, 10000000000000000000001B, 100000000000000000000005, 100000000000000000000015);
 			path = Snd;
 			sourceTree = "<group>";
 		};
@@ -41,16 +41,16 @@
 		10000000000000000000000B = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
-			files = (100000000000000000000001, 100000000000000000000002, 10000000000000000000001A);
+			files = (100000000000000000000001, 100000000000000000000002, 10000000000000000000001A, 10000000000000000000001C);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		10000000000000000000000C = {
 			isa = PBXProject;
 			buildConfigurationList = 10000000000000000000000E;
 			compatibilityVersion = "Xcode 14.0";
-			developmentRegion = et;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
-			knownRegions = (et, Base);
+			knownRegions = (en, et, Base);
 			mainGroup = 100000000000000000000007;
 			productRefGroup = 100000000000000000000009;
 			projectDirPath = "";
@@ -115,7 +115,7 @@
 		100000000000000000000014 = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Snd.icns; sourceTree = "<group>"; };
 		100000000000000000000015 = {
 			isa = PBXGroup;
-			children = (100000000000000000000014, 100000000000000000000016);
+			children = (100000000000000000000014, 100000000000000000000016, 10000000000000000000001F);
 			path = Resources;
 			sourceTree = "<group>";
 		};
@@ -124,11 +124,22 @@
 		100000000000000000000018 = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
-			files = (100000000000000000000017);
+			files = (100000000000000000000017, 100000000000000000000020);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		100000000000000000000019 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlfredCommand.swift; sourceTree = "<group>"; };
 		10000000000000000000001A = {isa = PBXBuildFile; fileRef = 100000000000000000000019; };
+		10000000000000000000001B = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SndLanguage.swift; sourceTree = "<group>"; };
+		10000000000000000000001C = {isa = PBXBuildFile; fileRef = 10000000000000000000001B; };
+		10000000000000000000001D = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		10000000000000000000001E = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = et; path = et.lproj/Localizable.strings; sourceTree = "<group>"; };
+		10000000000000000000001F = {
+			isa = PBXVariantGroup;
+			children = (10000000000000000000001D, 10000000000000000000001E);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		100000000000000000000020 = {isa = PBXBuildFile; fileRef = 10000000000000000000001F; };
 	};
 	rootObject = 10000000000000000000000C;
 }

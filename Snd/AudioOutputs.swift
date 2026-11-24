@@ -38,25 +38,27 @@ enum AudioOutputs {
         try integerProperty(kAudioHardwarePropertyDefaultOutputDevice, of: system)
     }
 
-    static func select(uid: String) throws {
+    static func select(uid: String) throws -> (name: String, changed: Bool) {
         guard let output = try list().first(where: { $0.uid == uid }) else {
             throw AudioError.deviceUnavailable
         }
-        try select(output)
+        return (name: output.name, changed: try select(output))
     }
 
-    static func select(_ output: AudioOutput) throws {
+    @discardableResult
+    static func select(_ output: AudioOutput) throws -> Bool {
         guard isSelectable(output.id),
               (try? stringProperty(kAudioDevicePropertyDeviceUID, of: output.id)) == output.uid
         else { throw AudioError.deviceUnavailable }
 
-        if try current() == output.id { return }
+        if try current() == output.id { return false }
 
         var address = property(kAudioHardwarePropertyDefaultOutputDevice)
         var id = output.id
         let size = UInt32(MemoryLayout.size(ofValue: id))
         try check(AudioObjectSetPropertyData(system, &address, 0, nil, size, &id))
         guard try current() == id else { throw AudioError.selectionFailed }
+        return true
     }
 
     private static func isSelectable(_ id: AudioDeviceID) -> Bool {
@@ -111,9 +113,9 @@ private enum AudioError: LocalizedError {
 
     var errorDescription: String? {
         switch self {
-        case .coreAudio(let status): "Core Audio viga (\(status))."
-        case .deviceUnavailable: "Valitud väljund pole enam saadaval."
-        case .selectionFailed: "macOS ei kinnitanud väljundi vahetust."
+        case .coreAudio(let status): SndLanguage.text("Core Audio error (%d).", status)
+        case .deviceUnavailable: SndLanguage.text("The selected output is no longer available.")
+        case .selectionFailed: SndLanguage.text("macOS did not confirm the output change.")
         }
     }
 }

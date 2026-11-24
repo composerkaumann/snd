@@ -19,7 +19,7 @@ enum AlfredCommand {
             do {
                 items = try results(matching: value.trimmingCharacters(in: .whitespacesAndNewlines))
             } catch {
-                items = [Item(title: "Heliväljundeid ei saanud lugeda",
+                items = [Item(title: SndLanguage.text("Could not list sound outputs"),
                               subtitle: error.localizedDescription, arg: nil)]
             }
             do {
@@ -31,7 +31,8 @@ enum AlfredCommand {
             return true
         case "--alfred-select":
             do {
-                try AudioOutputs.select(uid: value)
+                let selection = try AudioOutputs.select(uid: value)
+                print(SndLanguage.outputConfirmation(for: selection.name, changed: selection.changed))
             } catch {
                 fail(error)
             }
@@ -43,8 +44,8 @@ enum AlfredCommand {
 
     private static func results(matching prefix: String) throws -> [Item] {
         if prefix.isEmpty {
-            return [Item(title: "Ava heliväljundite valija",
-                         subtitle: "Otsimiseks sisesta väljundi nime algus", arg: ["open"])]
+            return [Item(title: SndLanguage.text("Open the sound output picker"),
+                         subtitle: SndLanguage.text("Type the beginning of an output name to search"), arg: ["open"])]
         }
 
         let matches = try AudioOutputs.list().filter { output in
@@ -52,12 +53,14 @@ enum AlfredCommand {
                               locale: .current) != nil
         }
         guard !matches.isEmpty else {
-            return [Item(title: "Sobivat heliväljundit pole", subtitle: "Nime algus „\(prefix)”", arg: nil)]
+            return [Item(title: SndLanguage.text("No matching sound output"),
+                         subtitle: SndLanguage.text("Name starts with “%@”", prefix), arg: nil)]
         }
 
         let current = try? AudioOutputs.current()
         return matches.map { output in
-            Item(title: output.name, subtitle: output.id == current ? "Kasutusel" : "Vali heliväljund",
+            let subtitle = output.id == current ? SndLanguage.text("In Use") : SndLanguage.text("Select sound output")
+            return Item(title: output.name, subtitle: subtitle,
                  arg: ["select", output.uid])
         }
     }

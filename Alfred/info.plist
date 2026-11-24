@@ -5,13 +5,17 @@
 	<key>bundleid</key>
 	<string>ee.music.sndpicker.workflow</string>
 	<key>name</key>
-	<string>Snd · Heliväljund</string>
+	<string>Snd</string>
 	<key>description</key>
-	<string>Otsi heliväljundit nime alguse järgi või ava valikuaken.</string>
+	<string>Sound output picker · Heliväljundi valija</string>
 	<key>version</key>
-	<string>1.3</string>
+	<string>1.8</string>
 	<key>readme</key>
-	<string>Sisesta snd ja väljundi nime algus, näiteks snd lg või snd dor. Vali tulemus ja vajuta Return. Ainult snd avab valikuakna.</string>
+	<string>## English
+Type `snd` followed by the start of a device name, for example `snd lg`. Highlight a result and press Return. Alfred confirms the active output. Press Return on `snd` alone to open the picker. In the picker, use the arrow keys and Return, press a number, or click an output to select it. Snd confirms the active output with a notification. Esc closes the picker without changing the output. Use **Snd → Language** to choose the language for both the app and workflow.
+
+## Eesti
+Sisesta `snd` ja väljundi nime algus, näiteks `snd lg`. Vali tulemus ja vajuta Return. Alfred kinnitab aktiivse väljundi teavitusega. Kui sisestad ainult `snd` ja vajutad Return, avaneb valikuaken. Aknas vali väljund nooleklahvide ja Returniga, numbriklahviga või klõpsuga. Snd kinnitab aktiivse väljundi teavitusega. Esc sulgeb akna väljundit vahetamata. Rakenduse ja töövoo keele saad valida menüüst **Snd → Keel**.</string>
 	<key>disabled</key>
 	<false/>
 	<key>objects</key>
@@ -38,7 +42,7 @@
 				<key>queuemode</key>
 				<integer>1</integer>
 				<key>runningsubtext</key>
-				<string>Loen saadaolevaid heliväljundeid…</string>
+				<string></string>
 				<key>script</key>
 				<string>exec "$PWD/Snd.app/Contents/MacOS/Snd" --alfred-list "$1"</string>
 				<key>scriptargtype</key>
@@ -46,9 +50,9 @@
 				<key>scriptfile</key>
 				<string></string>
 				<key>subtext</key>
-				<string>Sisesta väljundi nime algus</string>
+				<string></string>
 				<key>title</key>
-				<string>Otsi heliväljundit</string>
+				<string>Snd</string>
 				<key>type</key>
 				<integer>0</integer>
 				<key>withspace</key>
@@ -83,9 +87,8 @@
         ;;
 esac
 
-if ! message=$("$@" 2&gt;&amp;1); then
-    printf '%s\n' "$message"
-fi</string>
+# Forward both the confirmation and any error to Post Notification.
+"$@" 2&gt;&amp;1 || true</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
